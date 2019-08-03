@@ -1,7 +1,7 @@
 FROM debian:bullseye-slim
 
 RUN apt-get update \
-    && apt-get install -y zsh git \
+    && apt-get install -y zsh git dumb-init \
     && apt-get clean
 
 # sbin
@@ -16,4 +16,4 @@ ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # entry
-ENTRYPOINT /usr/bin/zsh
+ENTRYPOINT ["dumb-init", "code-server"]

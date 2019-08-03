@@ -1,0 +1,10 @@
+#!/bin/bash
+docker run -it --rm -w "${PWD}"\
+                    -v "${PWD}:${PWD}"\
+                    -v "${HOME}/.ssh:/root/.ssh"\
+                    -v //var/run/docker.sock:/var/run/docker.sock\
+                    -v code-server-home:/root\
+                    -v code-server-vscode:/home/vscode\
+                    -p 127.0.0.1:8443:8443\
+                    --entrypoint=dumb-init\
+                    dockerbundle/code-server code-server -e /home/vscode/extensions -d /home/vscode/user_data -H -N $PWD

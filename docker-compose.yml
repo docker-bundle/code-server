@@ -2,15 +2,17 @@ version: '3'
 services:
   app:
     image: dockerbundle/code-server
-    entrypoint: /usr/local/sbin/code-server
-    command: -e /home/vscode/extensions -d /home/vscode/user_data -H -N $PWD
+    entrypoint: dumb-init
+    command: code-server -e /home/vscode/extensions -d /home/vscode/user_data -H -N $PWD
     ports:
-      - "8443:8443"
+      - "127.0.0.1:8443:8443"
     working_dir: $PWD
     volumes:
       - //var/run/docker.sock:/var/run/docker.sock
       - vscode:/home/vscode
+      - home:/root
       - $HOME/.ssh:/root/.ssh
       - $PWD:$PWD
 volumes:
   vscode:
+  home:
