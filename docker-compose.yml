@@ -1,0 +1,15 @@
+version: '3'
+services:
+  app:
+    image: dockerbundle/code-server
+    entrypoint: /usr/local/sbin/code-server
+    command: -e /home/vscode/extensions -d /home/vscode/user_data -H -N $PWD
+    ports:
+      - "8443:8443"
+    working_dir: $PWD
+    volumes:
+      - //var/run/docker.sock:/var/run/docker.sock
+      - vscode:/home/vscode
+      - $PWD:$PWD
+volumes:
+  vscode:
