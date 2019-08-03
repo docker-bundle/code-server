@@ -10,6 +10,7 @@ services:
     volumes:
       - //var/run/docker.sock:/var/run/docker.sock
       - vscode:/home/vscode
+      - $HOME/.ssh:/root/.ssh
       - $PWD:$PWD
 volumes:
   vscode:

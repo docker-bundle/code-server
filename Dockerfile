@@ -6,7 +6,6 @@ RUN apt-get update \
 
 # sbin
 ADD sbin/* /usr/local/sbin/
-RUN chmod +x /usr/local/sbin/*
 
 # Zsh Config
 ENV PROMPT='%F{5}%n%F{1}@%F{4}(%F{3}%W %*%F{4})%F{6}=>%F{2}[%~]%F{3}#%f ' RPROMPT='{%F{3}%?%f}'
